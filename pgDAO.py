@@ -1,5 +1,4 @@
 import psycopg2
-from DAOInt import DAOInt
 from config import config
 
 class pgDAO():

@@ -1,7 +1,8 @@
 import psycopg2
+from DAOInt import DAOInt
 from config import config
 
-class pgDAO():
+class pgDAO(DAOInt):
     
     def saveCustomer(self, name, industry):
         sql = """INSERT INTO customers(name, industry)
@@ -71,7 +72,7 @@ class pgDAO():
 
 daoObj = pgDAO()
 
-#daoObj.saveCustomer('ACME', 'Manufacture')
-#daoObj.saveContact('Smith', 'PL')
+daoObj.saveCustomer('ACME', 'Manufacture')
+daoObj.saveContact('Smith', 'PL')
 daoObj.addContact('Smith', 'ACME')
 

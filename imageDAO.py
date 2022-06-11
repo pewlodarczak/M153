@@ -1,6 +1,12 @@
 from asyncio.windows_events import NULL
 import psycopg2
 from config import config
+import dbGUI
+from rich import print as rprint
+from rich.console import Console
+from os import system
+
+console = Console()
 
 class imageDAO():
     
@@ -107,8 +113,9 @@ class imageDAO():
 def main():
     imgDAO = imageDAO()
     toDo = ''
-
-    while toDo != 'q':
+    num = 0
+    while toDo != '4':
+        ''''
         print('What do you want to do:')
         print('c    create table')
         print('d    drop table')
@@ -116,21 +123,33 @@ def main():
         print('r    read image')
         print('del  delete image')
         print('q    quit')
+        '''
+
+        dbGUI.printMenu(num)
 
         toDo = input()
         if toDo == 'c':
             imgDAO.create_table()
         elif toDo == 'd':
             imgDAO.drop_table()
-        elif toDo == 'i':
-            imgDAO.insert_image("Cola", 'img/coci.gif', "Cocacola")
-        elif toDo == 'r':
+        elif toDo == '1':
+            imgDAO.insert_image("Cola", 'img/Cola.gif', "Cocacola")
+            num = 1
+            system('cls')
+        elif toDo == '2':
             imgDAO.read_image('Cola')
-        elif toDo == 'del':
+            num = 2
+            system('cls')
+        elif toDo == '3':
             imgDAO.delete_image(7)
-        elif toDo == 'q':
-            print('Au revoir')
-
+        elif toDo == '4':
+            print()
+            #rprint(['Au revoir', '😎'])
+            print('👋')
+            #console.print(":thumbs_up: Hasta la vista, baby")
+            #rprint('Hasta la vista, baby', '👽')
+            console.print('Hasta la vista, baby', style="blink bold red underline on white")
+            print()
         else:
             print('wrong command')
 
